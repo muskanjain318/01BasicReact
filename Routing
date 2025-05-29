@@ -1,0 +1,80 @@
+Routing in React means navigating between different pages or views in a single-page application (SPA) without refreshing the whole page.
+
+Think of it like:
+
+"When I click a button or link, I want to show a new component (like Dashboard or Landing), without reloading the browser."
+
+📦 We use:
+react-router-dom package
+
+<BrowserRouter> to enable routing
+
+<Routes> and <Route> to define which component to show on which URL
+
+useNavigate() or <Link> to move between pages
+
+🔁 Example:
+If you go to http://localhost:3000/dashboard, it shows the Dashboard component.
+If you go to /, it shows the Landing component.
+
+A SPA (Single Page Application) is a web app that loads a single HTML page, and updates content dynamically using JavaScript, without reloading the entire page.
+
+App.jsx
+
+
+import './App.css'
+import { Dashboard } from './components/Dashboard'
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom'
+import { Landing } from './components/Landing'
+
+function App() {
+
+
+  return (
+    <>
+
+
+      <BrowserRouter>
+      <Appbar/>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </BrowserRouter>
+
+    </>
+  )
+}
+
+
+      function Appbar() {
+          const navigate = useNavigate();
+          return(
+          <div>
+           <button onClick={() => { navigate("/dashboard"); }}>dashboard</button>
+            <button onClick={() => { navigate("/"); }}>Landing</button>
+
+          </div>
+      )
+      }
+
+export default App
+
+Dashboard.jsx
+
+export function Dashboard(){
+    return(<div>
+
+            Hello from Dashboard
+        </div>) 
+}
+
+LandingPage.jsx
+
+export function Landing(){
+    return(<div>
+
+            Hello from Landing
+        </div>)
+}
+
