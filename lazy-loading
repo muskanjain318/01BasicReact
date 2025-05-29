@@ -1,0 +1,80 @@
+@@ -0,0 +1,79 @@
+Lazy loading 
+
+Lazy loading in React means loading components only when they are needed, instead of loading everything at the beginning.
+This improves performance by reducing the initial load time of your application.
+
+📦 Why use Lazy Loading?
+🚀 Faster app load time
+
+📉 Reduces bundle size
+
+🧠 Better user experience
+
+Suspense
+We use <Suspense> to handle the loading state of a lazy-loaded component in React.
+
+💡 Simple Explanation:
+When you use React.lazy() to load a component only when it's needed, React doesn't instantly have that component ready.
+
+So, while React waits for the component to be loaded, <Suspense> shows a fallback UI (like a loading spinner or message).
+
+What is the fallback?
+It's a temporary UI shown while the component loads.
+
+Can be:
+
+A <div>Loading...</div>
+
+A spinner
+
+A skeleton screen
+
+Any JSX
+
+
+import React, { Suspense, lazy } from 'react';
+import './App.css';
+import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
+import Landing from './components/Landing';
+
+// ✅ Correct way to use React.lazy
+const Dashboard = lazy(() => import('./components/Dashboard'));
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Appbar />
+      <Suspense fallback={<p>Loading...</p>}>
+        <Routes>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/" element={<Landing />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+}
+
+// Move Appbar outside or inside as needed
+function Appbar() {
+  const navigate = useNavigate();
+  return (
+    <div>
+      <button onClick={() => navigate("/dashboard")}>Dashboard</button>
+      <button onClick={() => navigate("/")}>Landing</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+dashboard.jsx
+
+
+export default function Dashboard(){
+    return(<div>
+
+            Hello from Dashboard
+        </div>)   
+}
