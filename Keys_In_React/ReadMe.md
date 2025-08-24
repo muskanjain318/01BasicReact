@@ -3,3 +3,6 @@
 2. Remove item
 
    <img width="426" height="545" alt="image" src="https://github.com/user-attachments/assets/f200658b-d63d-4a2e-8e6b-a84405ecba6a" />
+3. Update item
+
+   <img width="419" height="551" alt="image" src="https://github.com/user-attachments/assets/f9453d99-b48f-4a68-9c82-c98bd8b61f20" />
