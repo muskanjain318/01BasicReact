@@ -1,0 +1,40 @@
+import React, { useState } from 'react';
+function Todo() {
+  const [todos, setTodos] = useState(['item1', 'item2', 'item3']);
+  const [todos2, setTodos2] = useState([
+    { id: 1, itemName: 'item1' },
+    { id: 2, itemName: 'item2' },
+    { id: 3, itemName: 'item3' },
+  ]);
+
+  const addNewElement = () => {
+    const newTodo = { id: todos2.length + 1, itemName: 'this is new item' };
+    setTodos2([newTodo, ...todos2]);
+  };
+
+  const addNewLastElement = () => {
+    const LastNewTodo = { id: todos2.length + 1, itemName: 'last item added' };
+    setTodos2([...todos2, LastNewTodo]);
+  };
+  return (
+    <>
+      <ul>
+        //we use curly braces to tell the react that its a js expression , run
+        it as it is and print under the tag.
+        {todos.map((i) => (
+          <li>{i}</li>
+        ))}
+      </ul>
+      <button onClick={addNewElement}>add to start</button>
+      <ol> 
+        {todos2.map((n) => (
+          <li key={n.id}>{n.itemName}</li>
+        ))}
+      </ol>
+
+      <button onClick={addNewLastElement}>add item in last</button>
+    </>
+  );
+}
+
+export default Todo;
