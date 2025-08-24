@@ -1,0 +1,30 @@
+//File name : Todo.js
+
+import React, { useState } from 'react';
+function Todo() {
+  const [todos, setTodos] = useState(['item1', 'item2', 'item3']);
+  const [todos2, setTodos2] = useState([
+    { id: 1, itemName: 'item1' },
+    { id: 2, itemName: 'item2' },
+    { id: 3, itemName: 'item3' },
+  ]);
+  return (
+    <>
+      <ul>
+        //we use curly braces to tell the react that its a js expression , run
+        it as it is and print under the tag.
+        {todos.map((i) => (
+          <li>{i}</li>
+        ))}
+      </ul>
+
+      <ol>
+        {todos2.map((n) => (
+          <li key={n.id}>{n.itemName}</li>
+        ))}
+      </ol>
+    </>
+  );
+}
+
+export default Todo;
