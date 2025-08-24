@@ -28,3 +28,16 @@ function Todo() {
 }
 
 export default Todo;
+
+
+Output 
+
+//we use curly braces to tell the react that its a js expression , run it as it is and print under the tag.
+.item1
+.item2
+.item3
+
+
+1. item1
+2. item2
+3. item3
