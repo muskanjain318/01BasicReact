@@ -1,0 +1,34 @@
+//suppose i have requirment that i need to create an program using react where i want to on focus when only we hover that input box or anyone can write something on that input box then how we achive that, what type of steps we should think first then process further step.
+
+//suppose i have requirment that i need to create an program using react where i want to on focus when only we hover that input box or anyone can write something on that input box then how we achive that, what type of steps we should think first then process further step.
+
+import React, { useEffect, useRef } from 'react';
+
+import React, { useRef } from 'react';
+
+function Focus() {
+  const inputRef = useRef(null);
+
+  const handleHover = () => {
+    inputRef.current.focus();
+  };
+
+  const handleTyping = () => {
+    inputRef.current.focus(); // ensures focus while typing
+  };
+
+  return (
+    <div>
+      <h2>Focus on Hover or Typing</h2>
+      <input
+        ref={inputRef}
+        type="text"
+        placeholder="Hover or type here..."
+        onMouseEnter={handleHover}
+        onChange={handleTyping}
+      />
+    </div>
+  );
+}
+
+export default Focus;
