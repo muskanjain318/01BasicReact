@@ -7,8 +7,12 @@ function Click() {
     const handleclick = function () {
       setcount((prev) => prev + 1);
     };
-    document.addEventListener('Click', handleclick);
+    document.addEventListener('click', handleclick);
     console.log('Click listener added');
+
+    return () => {
+      document.removeEventListener('click', handleclick);
+    };
   }, []);
   return (
     <>
