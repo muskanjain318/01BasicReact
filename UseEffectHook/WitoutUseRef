@@ -1,0 +1,15 @@
+import React, { useState, useEffect, useRef } from 'react';
+
+function Dom() {
+  const ColorChange = useRef(null);
+  useEffect(() => {
+    document.getElementById('testcolor').style.color = 'Blue';
+  }, []);
+
+  return (
+    <>
+      <h1 id="testcolor"> new component Dom </h1>
+    </>
+  );
+}
+export default Dom;
