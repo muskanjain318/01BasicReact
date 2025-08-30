@@ -1,0 +1,25 @@
+import React, { useState, useEffect } from 'react';
+
+function APIFetch() {
+  const [product, setproduct] = useState([]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((res) => res.json())
+      .then((d) => {
+        console.log(d);
+        setproduct(d);
+      });
+  }, []);
+
+  return (
+    <>
+      <ul>
+        {product.map((p) => (
+          <li key={p.id}>{p.name}</li>
+        ))}
+      </ul>
+    </>
+  );
+}
+export default APIFetch;
