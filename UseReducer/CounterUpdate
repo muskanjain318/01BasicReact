@@ -1,0 +1,26 @@
+import React, { useReducer } from 'react';
+
+function CounterReducer(state, action) {
+  switch (action.type) {
+    case 'INCREMENT':
+      return state + 1;
+    case 'DECREMENT':
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+function ReducerCall() {
+  const [count, dispatch] = useReducer(CounterReducer, 0);
+
+  return (
+    <>
+      <h3> hello from counnter reducer file </h3>
+      <h4> count is {count}</h4>
+      <button onClick={() => dispatch({ type: 'INCREMENT' })}> + </button>
+      <button onClick={() => dispatch({ type: 'DECREMENT' })}> - </button>
+    </>
+  );
+}
+export default ReducerCall;
