@@ -1,0 +1,33 @@
+import React, { useReducer } from 'react';
+
+function Toggleaction(state, action) {
+  switch (action.type) {
+    case 'ON':
+      return { toggle: true };
+    case 'OFF':
+      return { toggle: false };
+    default:
+      return state;
+  }
+}
+
+function ToggleCall() {
+  const [showV, dispatch] = useReducer(Toggleaction, {
+    toggle: false, // default OFF
+  });
+
+  return (
+    <>
+      <h4> Toggle Example: Show & Hide Data </h4>
+      <h5> Current state: {showV.toggle ? 'ON' : 'OFF'}</h5>
+
+      {/* Show content only when toggle = true */}
+      {showV.toggle && <h4>Content of hide/show</h4>}
+
+      <button onClick={() => dispatch({ type: 'ON' })}> ON </button>
+      <button onClick={() => dispatch({ type: 'OFF' })}> OFF </button>
+    </>
+  );
+}
+
+export default ToggleCall;
