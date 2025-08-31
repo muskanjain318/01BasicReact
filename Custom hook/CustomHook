@@ -1,6 +1,6 @@
 CustomHook.js 
 
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 
 function useCounter(IV = 0) {
   const [count, setCount] = useState(IV);
@@ -13,18 +13,46 @@ function useCounter(IV = 0) {
 }
 export default useCounter;
 
+function useToggle(IV = false){
+  const[count,dispatch] = useReducer(reducer,{toggle: false});
+  const on = () => dispatch({type:"ON"})
+  const off = () => dispatch({type:"OFF"})
+
+  return { toggle: count.toggle, on, off}
+}
+
+export default useToggle
+
+function reducer(state,action){
+  switch(action.type){
+    case "ON":
+      return {toggle: true}
+    case "OFF":
+      return {toggle: false}
+    default:
+      return state;
+  }
+}
+
+
+
 
 Test.js 
 
 import React from 'react';
 import useCounter from './CustomHook';
-
+import useToggle from './CustomHook';
 function Test() {
   const { count, increment, decrement, reset } = useCounter(0);
+  const { toggle, on, off } = useToggle();
   return (
     <>
       Counter : {count}
       <button onClick={increment}> increment </button>
+      <h3>Current: {toggle ? 'ON' : 'OFF'}</h3>
+      <button onClick={on}>Turn ON</button>
+      <button onClick={off}>Turn OFF</button>
+      {toggle && <p>🎉 Now it's visible!</p>}
     </>
   );
 }
