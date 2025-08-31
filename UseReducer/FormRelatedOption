@@ -1,0 +1,43 @@
+import React, { useReducer } from 'react';
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'HOVER': // mouse entered
+      return { ...state, isFocused: true };
+    case 'TYPEE': // typing something
+      return { ...state, value: action.payload };
+    case 'BLUR': // lost focus
+      return { ...state, isFocused: false };
+    default:
+      return state;
+  }
+}
+
+function InputBox() {
+  // initial state
+  const [state, dispatch] = useReducer(reducer, {
+    isFocused: false,
+    value: '',
+  });
+
+  return (
+    <div>
+      <input
+        type="text"
+        placeholder="Type here..."
+        value={state.value}
+        onMouseEnter={() => dispatch({ type: 'HOVER' })}
+        onChange={(e) => dispatch({ type: 'TYPEE', payload: e.target.value })}
+        onBlur={() => dispatch({ type: 'BLUR' })}
+        style={{
+          border: state.isFocused ? '2px solid blue' : '1px solid gray',
+        }}
+      />
+
+      <p>Focused: {state.isFocused ? 'Yes' : 'No'}</p>
+      <p>Value: {state.value}</p>
+    </div>
+  );
+}
+
+export default InputBox;
