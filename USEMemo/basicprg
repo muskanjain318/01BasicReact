@@ -1,0 +1,36 @@
+import React, { useState, useMemo } from 'react';
+
+function StudentSearch() {
+  const [search, setSearch] = useState('');
+
+  // A big student list (imagine 10,000 names instead of 5)
+  const students = ['Muskan', 'Ravi', 'Priya', 'Amit', 'John', 'jj'];
+
+  // useMemo to avoid recalculating filtered list every render
+  const filteredStudents = useMemo(() => {
+    console.log('Filtering students...'); // to see when it runs
+    return students.filter((student) =>
+      student.toLowerCase().includes(search.toLowerCase())
+    );
+  }, [search, students]); // re-run ONLY when search or students change
+
+  return (
+    <div>
+      <h3> Student Search </h3>
+      <input
+        type="text"
+        placeholder="Search name..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+
+      <ul>
+        {filteredStudents.map((s, index) => (
+          <li key={index}>{s}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export default StudentSearch;
