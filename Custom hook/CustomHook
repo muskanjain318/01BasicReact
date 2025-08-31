@@ -1,0 +1,32 @@
+CustomHook.js 
+
+import React, { useState } from 'react';
+
+function useCounter(IV = 0) {
+  const [count, setCount] = useState(IV);
+
+  const increment = () => setCount(count + 1);
+  const decrement = () => setCount(count - 1);
+  const reset = () => setCount(IV);
+
+  return { count, increment, decrement, reset };
+}
+export default useCounter;
+
+
+Test.js 
+
+import React from 'react';
+import useCounter from './CustomHook';
+
+function Test() {
+  const { count, increment, decrement, reset } = useCounter(0);
+  return (
+    <>
+      Counter : {count}
+      <button onClick={increment}> increment </button>
+    </>
+  );
+}
+
+export default Test;
